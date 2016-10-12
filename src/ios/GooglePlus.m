@@ -68,6 +68,12 @@ Fixes issue with G+ login window not closing correctly on ios 9
             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
     }
 }
+    //Fix for Google success login redirects to google.com issue
+    (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+     return [[GIDSignIn sharedInstance] handleURL:url
+                                sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+    annotation:options[UIApplicationOpenURLOptionsSourceApplicationKey]];
+    }
 @end
 
 @implementation GooglePlus
